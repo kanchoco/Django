@@ -37,18 +37,20 @@ Django를 가상 환경에 설치
 pip install django~=3.2.10
 
 프로젝트 생성
+```python
 django-admin startproject myweb .			# .은 새로운 프로젝트를 만들라는 뜻
 
 python manage.py startapp photo			# photo라는 앱폴더를 생성
 
 python manage.py runserver				# 서버를 돌림
-
+```
 *Django의 기본 포트 번호는 8000
 *장고의 실행을 멈추고 터미널로 돌아가려면 터미널에서 Ctrl + C를 입력하면된다.
 
 3. 설정 마무리
 프로젝트 파일 내 setting.py
-------------------------------------------------------
+
+```python
 INSTALLED_APPS = [
 	'django.contrib.admin',
 	'django.contrib.auth',
@@ -59,19 +61,21 @@ INSTALLED_APPS = [
 	'photo',				# 만든 앱 추가
 	]
 TIME_ZONE = 'Asia/Seoul'			# 시간대 설정
-------------------------------------------------------
+```
+
 
 migration 에러 수정
 python manage.py migrate
-===================================
-Django 프로젝트 구조
+
+
+# Django 프로젝트 구조
 
 프로젝트
 	> 하나의 큰 서비스
 앱
 	> 서비스 내 기능과 같은 요소를 일정한 기준으로 나눠 놓은 단위
 
-===================================
+
 Django 프로젝트 구성요소
 
 manage.py
@@ -85,7 +89,7 @@ manage.py
 	- settings.py > 설정 파일로 여러 옵션 설정 가능
 	- urls.py > 프로젝트 url 주소를 등록해놓는 파일
 
-===================================
+
 MTV 패턴
 
 1. Model - 앱의 데이터와 관련된 부분
@@ -95,7 +99,7 @@ Django 모델 만들기
 
 model.py에 모델 클래스 만들기
 
--------------------------------------------
+
 필드종류
 CharField : 문자열(길이제한 필요)
 IntegerField : 정수
@@ -107,23 +111,24 @@ ImageField : 이미지 파일
 ForeignKey : 외래 키(관계)
 OneToOneField : 1대 1 관계
 ManyToManyField : 다대다 관계
--------------------------------------------
+
 
 *마이그레이션
 - 모델을 데이터베이스에 적용시키는 과정
---------------------------
+
 1. makemigrations : 우리가 모델을 변경한 내용을 기록하여 파일로 만들어주는 과정
 2. migrate : makemigrations에서 생성된 파일을 실제로 실행시켜 실제 데이터베이스에 변경 사항을 적용시켜주는 과정
---------------------------
+
 
 마이그레이션 적용
 python manage.py makemigrations
 
 +생성된 모델은 페이지에 적용시켜야한다.
-	-------------
+```python	
 from .models import (Class)
 admin.site.register(Class)
-	------------
+```
+	
 
 
 
@@ -141,7 +146,6 @@ admin.site.register(Class)
 4. Django URL
 - 라우팅의 역할, 서버로 해당 주소에 할당된 리소스를 요형하는 역할
 
-=================================
 작업 순서
 모델 -> 템플릿 -> 뷰 -> URL
 
@@ -149,5 +153,5 @@ admin.site.register(Class)
 2. 템플릿 생성
 3. 뷰에 템플릿과 데이터를 주고받을 함수 생성
 4. urls에 뷰 추가
-=================================
+
 
