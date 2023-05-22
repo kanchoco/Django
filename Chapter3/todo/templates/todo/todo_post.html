@@ -1,0 +1,27 @@
+<html>
+    <head>
+        <title>TODO 목록 앱</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
+    </head>
+    <body>
+        <div class="container">
+            <h1>TODO 추가하기</h1>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <form method="POST">
+                                    <!-- csrf_token : 임의의 난수를 생성하고 세션에 저장한다. 그리고 사용자의 매 요청마다 해당 난수 값을 포함시켜서 전송 -->
+                                    {% csrf_token %} {{ form.as_p }}
+                                    <button type="submit" class="btn btn-primary">등록</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

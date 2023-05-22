@@ -1,0 +1,23 @@
+<html>
+    <head>
+        <title>Photo App</title>
+    </head>
+    <body>
+        <h1><a href="">사진 목록</a></h1>
+        <h3><a href="{% url 'photo_post' %}">게시글 작성</a></h3>
+        <section>
+            <!-- Django의 템플릿 태그 -->
+            <!-- 뷰에서 photos라는 데이터 뭉치를 가져와서 반복작업을 실행한다. -->
+            {% for photo in photos %}
+            <div>
+                <h2>
+                    <a href="{% url 'photo_detail' pk=photo.pk %}">{{photo.title}}</a>
+                </h2>
+                <img src="{{photo.image}}"
+                    alt="{{photo.title}}" width="300"/>
+                <p>{{photo.author}}, {{photo.price}}</p>
+            </div>
+            {% endfor %}
+        </section>
+    </body>
+</html>

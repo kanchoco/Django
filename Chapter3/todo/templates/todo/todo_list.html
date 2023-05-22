@@ -1,0 +1,40 @@
+<!-- 1번 템플릿 만들기 -->
+<!-- 2번 뷰 만들기 -->
+<!-- 3번 url 연결하기 -->
+<!-- 4번 프로젝트 url에 연결 -->
+<html>
+    <head>
+        <title>TODO 목록 앱</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
+    </head>
+    <body>
+        <div class="container">
+            <h1>TODO 목록 앱</h1>
+            <p>
+                <a href="{% url 'todo_post' %}"><i class="bi-plus"></i>Add Todo</a>
+                <!-- 참고자료에서는 템플릿을 나눴지만 동일 페이지로 사용해보고싶어서 동적으로 url을 검사하여 바꾸는 방식 채용 -->
+                {% if request.resolver_match.view_name == 'todo_done_list' %}
+                    <a href="{% url 'todo_list' %}" class="btn btn-primary" style="float: right;">진행중인 TODO 목록</a>
+                {% else %}
+                    <a href="{% url 'todo_done_list' %}" class="btn btn-primary" style="float: right;">완료한 TODO 목록</a>
+                {% endif %}
+            </p>
+            <ul class="list-group">
+                <!-- Django의 템플릿 태그 -->
+                {% for todo in todos %}
+                <li class="list-group=item">
+                    <a href="{% url 'todo_detail' pk=todo.pk%}">{{ todo.title }}</a>
+                    {% if todo.important %}
+                        <span class="badge badge-danger">!</span>
+                    {% endif %}
+                    <div style="float: right;">
+                        <a href="{% url 'todo_done' pk=todo.pk %}" class="btn btn-danger">완료</a>
+                        <a href="{% url 'todo_edit' pk=todo.pk%}" class="btn btn-outline-primary">수정하기</a>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </body>
+</html>
