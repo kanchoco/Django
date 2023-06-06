@@ -29,8 +29,9 @@ python -m venv myvenv				#myvenv라는 가상 환경 생성
 source myvenv\bin\activate				# myvenv 실행(활성화) (. = source)
 ```
 
-****window
+window의 경우
 myvenv\Scripts\activate
+
 ------------------------------------------------------
 
 Django를 가상 환경에 설치
