@@ -8,4 +8,18 @@ from .models import Todo
 class TodoSimpleSerializer(serializers.ModelSerializer):
     class Meta:
         model = Todo
+        # '__all__'
         fields = ('id', 'title', 'complete', 'important')
+
+# 상세조회용 시리얼라이저
+# 상세조회에서는 내용이 필요해지므로 필드에 description을 추가한다.
+class TodoDetailSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Todo
+        fields = ('id', 'title', 'description', 'complete', 'important')
+
+# 생성용 시리얼라이저
+class TodoCreateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Todo
+        fields = ('title', 'description', 'important')
